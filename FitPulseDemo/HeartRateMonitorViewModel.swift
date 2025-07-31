@@ -9,6 +9,7 @@ import Foundation
 import SmartSpectraSwiftSDK
 import Combine
 import SwiftUI
+import AVFoundation
 
 @Observable
 class HeartRateMonitorViewModel {
@@ -30,12 +31,12 @@ class HeartRateMonitorViewModel {
         
         sdk.setSmartSpectraMode(.continuous)
         
-        sdk.setMeasurementDuration(1.0)
-        sdk.setRecordingDelay(0)
+        sdk.setMeasurementDuration(30.0)
+        sdk.setRecordingDelay(3)
         
-        sdk.setCameraPosition(.back)
+        sdk.setCameraPosition(.front)
         
-        sdk.showControlsInScreeningView(false)
+        sdk.showControlsInScreeningView(true)
         
         sdk.setShowFps(false)
         
@@ -69,6 +70,15 @@ class HeartRateMonitorViewModel {
         minBPM = Int.max
         maxBPM = Int.min
         avgBPM = 0
+    }
+    
+    
+    func requestCameraAccess() {
+        AVCaptureDevice.requestAccess(for: .video) {[weak self] granted in
+            if !granted {
+                self?.errorMessage = "Camera access required."
+            }
+        }
     }
 }
 
