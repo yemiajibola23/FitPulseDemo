@@ -10,9 +10,18 @@ import SmartSpectraSwiftSDK
 
 struct HeartRateView: View {
     @Bindable var viewModel = HeartRateMonitorViewModel()
+    @State private var isDarkMode = false
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         VStack(spacing: 14) {
+            
+            // Light/Dark Mode Toggle
+            Toggle(isOn: $isDarkMode) {
+                Text("Dark Mode")
+            }
+            .toggleStyle(.switch)
+            .padding(.top)
             
             // Header
             VStack(spacing: 24) {
@@ -28,7 +37,8 @@ struct HeartRateView: View {
             // BPM
             ZStack {
                 Circle()
-                    .stroke(Color.red.opacity(0.8), lineWidth: 10)
+                    .stroke(colorScheme == .dark ? Color.red :  Color.red.opacity(0.8), lineWidth: 10)
+                    .shadow(color: Color.red.opacity(0.8), radius: 10)
                     .scaleEffect(viewModel.isPulsing ? 1.2 : 1.0)
                     .opacity(viewModel.isPulsing ? 0.3 : 0.1)
                     .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: viewModel.isPulsing)
@@ -78,6 +88,7 @@ struct HeartRateView: View {
         .background(Color(.systemBackground).ignoresSafeArea())
         .padding()
         .onAppear { viewModel.requestCameraAccess() }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
     }
 }
 

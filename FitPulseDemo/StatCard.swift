@@ -17,7 +17,7 @@ struct StatCard: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
             
-            Text("\(value)")
+            Text(value == Int.max || value == Int.min ? "--" : String(value))
                 .font(.title3)
                 .fontWeight(.medium)
         }
