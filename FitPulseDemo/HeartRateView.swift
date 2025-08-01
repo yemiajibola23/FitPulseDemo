@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SmartSpectraSwiftSDK
+import Charts
 
 struct HeartRateView: View {
     @Bindable var viewModel = HeartRateMonitorViewModel()
@@ -74,6 +75,14 @@ struct HeartRateView: View {
                 .background(viewModel.isMonitoring ? .red : .green)
                 .cornerRadius(20)
             }
+            
+            Chart(viewModel.bpmHistoryData) {
+                LineMark(x: .value("Time", $0.time), y: .value("BPM", $0.bpm))
+                    .foregroundStyle(.red)
+                    .interpolationMethod(.catmullRom)
+            }
+            .frame(height: 160)
+            .padding(.top, 12)
             
             if let errorMessage = viewModel.errorMessage {
                 Text(errorMessage)

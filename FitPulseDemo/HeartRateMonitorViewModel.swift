@@ -21,9 +21,15 @@ class HeartRateMonitorViewModel {
     var isPulsing = false
     var isMonitoring = false
     
-    private var history: [Int] = []
+    private var bpmHistory: [Int] = []
     private var cancellable: AnyCancellable?
     private var vitalsProcessor = SmartSpectraVitalsProcessor.shared
+    
+    var bpmHistoryData: [BPMReading] {
+        bpmHistory.enumerated().map { index, bpm in
+            BPMReading(time: index, bpm: bpm)
+        }
+    }
     
     init() {
         configureSDK()
@@ -65,10 +71,10 @@ class HeartRateMonitorViewModel {
         guard newBPM > 0 else { return }
         
         bpm = newBPM
-        history.append(newBPM)
+        bpmHistory.append(newBPM)
         minBPM = min(newBPM, minBPM)
         maxBPM = max(newBPM, maxBPM)
-        avgBPM = history.reduce(0, +) / history.count
+        avgBPM = bpmHistory.reduce(0, +) / bpmHistory.count
         isPulsing.toggle()
     }
     
@@ -78,7 +84,7 @@ class HeartRateMonitorViewModel {
         isMonitoring = false
         
         cancellable?.cancel()
-        history.removeAll()
+        bpmHistory.removeAll()
         
         bpm = 0
         minBPM = Int.max
@@ -98,3 +104,8 @@ class HeartRateMonitorViewModel {
 }
 
 
+struct BPMReading: Identifiable {
+    let id = UUID()
+    let time: Int
+    let bpm: Int
+}
