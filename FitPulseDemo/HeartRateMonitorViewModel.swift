@@ -61,7 +61,7 @@ class HeartRateMonitorViewModel {
             }
     }
     
-    private func updateStats(with newBPM: Int) {
+    func updateStats(with newBPM: Int) {
         guard newBPM > 0 else { return }
         
         bpm = newBPM

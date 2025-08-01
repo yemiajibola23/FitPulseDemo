@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C7DD75D12E3AB132003CD2A4 /* SmartSpectraSwiftSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C7DD75D02E3AB132003CD2A4 /* SmartSpectraSwiftSDK */; };
+		C7DD75E12E3C8156003CD2A4 /* SmartSpectraSwiftSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C7DD75E02E3C8156003CD2A4 /* SmartSpectraSwiftSDK */; };
+		C7DD75E32E3C817A003CD2A4 /* SmartSpectraSwiftSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C7DD75E22E3C817A003CD2A4 /* SmartSpectraSwiftSDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7DD75D12E3AB132003CD2A4 /* SmartSpectraSwiftSDK in Frameworks */,
+				C7DD75E32E3C817A003CD2A4 /* SmartSpectraSwiftSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7DD75E12E3C8156003CD2A4 /* SmartSpectraSwiftSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +118,7 @@
 			);
 			name = FitPulseDemo;
 			packageProductDependencies = (
-				C7DD75D02E3AB132003CD2A4 /* SmartSpectraSwiftSDK */,
+				C7DD75E22E3C817A003CD2A4 /* SmartSpectraSwiftSDK */,
 			);
 			productName = FitPulseDemo;
 			productReference = C7DD75952E38267D003CD2A4 /* FitPulseDemo.app */;
@@ -140,6 +142,7 @@
 			);
 			name = FitPulseDemoTests;
 			packageProductDependencies = (
+				C7DD75E02E3C8156003CD2A4 /* SmartSpectraSwiftSDK */,
 			);
 			productName = FitPulseDemoTests;
 			productReference = C7DD75A52E382681003CD2A4 /* FitPulseDemoTests.xctest */;
@@ -160,6 +163,7 @@
 					};
 					C7DD75A42E382681003CD2A4 = {
 						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1620;
 						TestTargetID = C7DD75942E38267D003CD2A4;
 					};
 				};
@@ -174,7 +178,7 @@
 			mainGroup = C7DD758C2E38267D003CD2A4;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				C7DD75CF2E3AB132003CD2A4 /* XCRemoteSwiftPackageReference "SmartSpectra" */,
+				C7DD75DF2E3C8156003CD2A4 /* XCRemoteSwiftPackageReference "SmartSpectra" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C7DD75962E38267D003CD2A4 /* Products */;
@@ -413,15 +417,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 767ELXNDQ9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FitPulseDemoTests/Info.plist;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.YemiAjibola.FitPulseDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitPulseDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FitPulseDemo";
@@ -432,10 +439,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 767ELXNDQ9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FitPulseDemoTests/Info.plist;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.YemiAjibola.FitPulseDemoTests;
@@ -480,7 +489,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C7DD75CF2E3AB132003CD2A4 /* XCRemoteSwiftPackageReference "SmartSpectra" */ = {
+		C7DD75DF2E3C8156003CD2A4 /* XCRemoteSwiftPackageReference "SmartSpectra" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Presage-Security/SmartSpectra";
 			requirement = {
@@ -491,9 +500,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C7DD75D02E3AB132003CD2A4 /* SmartSpectraSwiftSDK */ = {
+		C7DD75E02E3C8156003CD2A4 /* SmartSpectraSwiftSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C7DD75CF2E3AB132003CD2A4 /* XCRemoteSwiftPackageReference "SmartSpectra" */;
+			package = C7DD75DF2E3C8156003CD2A4 /* XCRemoteSwiftPackageReference "SmartSpectra" */;
+			productName = SmartSpectraSwiftSDK;
+		};
+		C7DD75E22E3C817A003CD2A4 /* SmartSpectraSwiftSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7DD75DF2E3C8156003CD2A4 /* XCRemoteSwiftPackageReference "SmartSpectra" */;
 			productName = SmartSpectraSwiftSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
