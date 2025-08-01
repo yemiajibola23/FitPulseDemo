@@ -16,22 +16,20 @@
  - Unit tested using Swift Testing
 
  ---
- 
- ## Quick Start
- 
- Refer to [`QuickStart.md`](./QuickStart.md) for:
+
+## Quick Start
+Refer to [`QuickStart.md`](./QuickStart.md) for:
   - Step-by-step setup & import guide
   - Code snippets to get up and running
   - Privacy settings for camera access
   - How to request your `SmartSpectra` API key
 
   --- 
-  
-  ## Performance Optimization
-  
-  ### Optimization Opportunity
-  
-  Currently, the app processes every frame (~30 FPS), which creates heavy CPU usage on some devices. From profiling (see Instruments screenshot above), most CPU loads stems from continuous frame processing by `MediaPipe`.
+
+## Performance Optimization
+### Optimization Opportunity
+
+Currently, the app processes every frame (~30 FPS), which creates heavy CPU usage on some devices. From profiling (see Instruments screenshot above), most CPU loads stems from continuous frame processing by `MediaPipe`.
 
 **Planned Optimization:** 
 Throttle the processing rate by **skipping frames**, e.g. analyzing only 1 in every 3 frames. This reduces CPU load without significantly affecting BPM accuracy.
@@ -46,6 +44,6 @@ frameCount += 1
 ```
 
 ## Documentation
-[`QuickStart.md`](./QuickStart.md) - Setup steps and troubleshooting
-[`FAQ.md`](./FAQ.md) - Answers to common questions
+- [`QuickStart.md`](./docs/QuickStart.md) - Setup steps and troubleshooting
+- [`FAQ.md`](./docs/FAQ.md) - Answers to common questions
 
