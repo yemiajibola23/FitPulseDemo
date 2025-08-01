@@ -13,11 +13,12 @@ import AVFoundation
 
 @Observable
 class HeartRateMonitorViewModel {
-    var bpm: Int?
+    var bpm = 0
     var minBPM = Int.max
     var maxBPM = Int.min
     var avgBPM = 0
     var errorMessage: String? = nil
+    var isPulsing = false
     
     private var history: [Int] = []
     private var cancellable: AnyCancellable?
@@ -59,23 +60,28 @@ class HeartRateMonitorViewModel {
     }
     
     private func updateStats(with newBPM: Int) {
-        print(" 🔄 \(vitalsProcessor.statusHint)")
+        guard newBPM > 0 else { return }
+        
         bpm = newBPM
         history.append(newBPM)
         minBPM = min(newBPM, minBPM)
         maxBPM = max(newBPM, maxBPM)
         avgBPM = history.reduce(0, +) / history.count
+        isPulsing.toggle()
     }
     
     func stopMonitoring() {
         vitalsProcessor.stopProcessing()
+        vitalsProcessor.stopRecording()
+        
         cancellable?.cancel()
         history.removeAll()
         
-        bpm = nil
+        bpm = 0
         minBPM = Int.max
         maxBPM = Int.min
         avgBPM = 0
+        errorMessage = nil
     }
     
     
