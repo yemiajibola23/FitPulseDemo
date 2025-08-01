@@ -21,6 +21,11 @@ class HeartRateMonitorViewModel {
     
     private var history: [Int] = []
     private var cancellable: AnyCancellable?
+    private var vitalsProcessor = SmartSpectraVitalsProcessor.shared
+    
+    init() {
+        configureSDK()
+    }
     
     func configureSDK() {
         let sdk = SmartSpectraSwiftSDK.shared
@@ -36,15 +41,14 @@ class HeartRateMonitorViewModel {
         
         sdk.setCameraPosition(.front)
         
-        sdk.showControlsInScreeningView(true)
+        sdk.showControlsInScreeningView(false)
         
         sdk.setShowFps(false)
-        
-        SmartSpectraVitalsProcessor.shared.startProcessing()
     }
     
     func startMonitoring() {
-        configureSDK()
+        vitalsProcessor.startProcessing()
+        vitalsProcessor.startRecording()
         
         cancellable = SmartSpectraSwiftSDK.shared
             .$metricsBuffer
@@ -55,6 +59,7 @@ class HeartRateMonitorViewModel {
     }
     
     private func updateStats(with newBPM: Int) {
+        print(" 🔄 \(vitalsProcessor.statusHint)")
         bpm = newBPM
         history.append(newBPM)
         minBPM = min(newBPM, minBPM)
@@ -63,6 +68,7 @@ class HeartRateMonitorViewModel {
     }
     
     func stopMonitoring() {
+        vitalsProcessor.stopProcessing()
         cancellable?.cancel()
         history.removeAll()
         
