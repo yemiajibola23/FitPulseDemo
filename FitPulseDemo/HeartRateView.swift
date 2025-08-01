@@ -34,14 +34,13 @@ struct HeartRateView: View {
                     .font(.system(size: 48, weight: .bold))
                     .foregroundStyle(.white)
             }
-            
-            
+            .frame(width: 180, height: 180)
             
             // Stats
-            HStack(spacing: 32) {
-                Text("Min: \(viewModel.minBPM)")
-                Text("Max: \(viewModel.maxBPM)")
-                Text("Avg: \(viewModel.avgBPM)")
+            HStack(spacing: 20) {
+                StatCard(title: "Min", value: viewModel.minBPM)
+                StatCard(title: "Avg", value: viewModel.avgBPM)
+                StatCard(title: "Max", value: viewModel.maxBPM)
             }
             .font(.subheadline)
             .foregroundStyle(.gray)
@@ -72,6 +71,7 @@ struct HeartRateView: View {
         .onAppear { viewModel.requestCameraAccess() }
     }
 }
+
 
 
 
