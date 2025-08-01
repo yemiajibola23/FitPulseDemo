@@ -23,11 +23,19 @@ struct HeartRateView: View {
             }
             
             // BPM
-            Text("\(viewModel.bpm) BPM")
-                .font(.system(size: 48, weight: .bold))
-                .foregroundStyle(.white)
-                .scaleEffect(viewModel.isPulsing ? 1.1 : 1.0)
-                .animation(.easeInOut(duration: 1.0), value: viewModel.isPulsing)
+            ZStack {
+                Circle()
+                    .stroke(Color.red.opacity(0.6), lineWidth: 8)
+                    .scaleEffect(viewModel.isPulsing ? 1.2 : 1.0)
+                    .opacity(viewModel.isPulsing ? 0.3 : 0.1)
+                    .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: viewModel.isPulsing)
+                
+                Text("\(viewModel.bpm) BPM")
+                    .font(.system(size: 48, weight: .bold))
+                    .foregroundStyle(.white)
+            }
+            
+            
             
             // Stats
             HStack(spacing: 32) {
