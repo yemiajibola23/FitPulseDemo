@@ -1,4 +1,5 @@
 # ❤️ FitPulseDemo
+## Yemi Ajibola
 **FitPulseDemo** is a lightweight SwiftUI demo that uses the SmartSpectraSwiftSDK to detect and visualize real-time heart rate data from the iPhone camera. It demonstrates camera permission handling, live BPM updates, and heart rate statistics (min/max/avg) with responsive SwiftUI components.
 
 ---
