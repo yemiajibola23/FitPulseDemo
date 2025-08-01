@@ -12,6 +12,7 @@
  - Start/Stop toggle for monitoring
  - Light/Dark mode support
  - Unit tested using Swift Testing
+ - Uses Charts framework to show BPM history
 
  ---
 
@@ -48,6 +49,25 @@ frameCount += 1
 
 ---
 
+## Additional Features
+###  📈 Real-Time BPM Chart
+- Smooth, continuous chart using Swift Charts
+- Auto-updates with each new BPM reading
+- Respects light and dark mode for seamless appearance
+
+
+### How it works
+- The `HeartRateMonitorViewModel` maintains a `bpmHistoryData` array that stores time-stamped BPM readings.
+- In `HeartRateView.swift`, we use Swift Charts to render a `LineMark`
+
+
+### 🧩 Notes:
+
+- The chart is wrapped in a card-style container using RoundedRectangle for a cleaner visual grouping.
+- Axes are hidden for simplicity, but can be toggled if needed.  
+- Uses adaptive system colors for full light/dark mode support.
+
+---
 ## Documentation
 - [`QuickStart.md`](./docs/QuickStart.md) - Setup steps and troubleshooting
 - [`FAQ.md`](./docs/FAQ.md) - Answers to common questions
