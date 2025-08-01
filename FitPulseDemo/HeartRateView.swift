@@ -76,14 +76,26 @@ struct HeartRateView: View {
                 .cornerRadius(20)
             }
             
-            Chart(viewModel.bpmHistoryData) {
-                LineMark(x: .value("Time", $0.time), y: .value("BPM", $0.bpm))
+            ZStack {
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(Color(.secondarySystemBackground))
+                    .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+
+                Chart(viewModel.bpmHistoryData) {
+                    LineMark(
+                        x: .value("Time", $0.time),
+                        y: .value("BPM", $0.bpm)
+                    )
                     .foregroundStyle(.red)
                     .interpolationMethod(.catmullRom)
+                }
+                .chartXAxis(.hidden)
+                .chartYAxis(.hidden)
+                .padding()
             }
-            .frame(height: 160)
-            .padding(.top, 12)
-            
+            .frame(height: 180)
+            .padding(.horizontal)
+
             if let errorMessage = viewModel.errorMessage {
                 Text(errorMessage)
                     .foregroundStyle(.red)
