@@ -19,6 +19,7 @@ class HeartRateMonitorViewModel {
     var avgBPM = 0
     var errorMessage: String? = nil
     var isPulsing = false
+    var isMonitoring = false
     
     private var history: [Int] = []
     private var cancellable: AnyCancellable?
@@ -50,6 +51,7 @@ class HeartRateMonitorViewModel {
     func startMonitoring() {
         vitalsProcessor.startProcessing()
         vitalsProcessor.startRecording()
+        isMonitoring = true
         
         cancellable = SmartSpectraSwiftSDK.shared
             .$metricsBuffer
@@ -73,6 +75,7 @@ class HeartRateMonitorViewModel {
     func stopMonitoring() {
         vitalsProcessor.stopProcessing()
         vitalsProcessor.stopRecording()
+        isMonitoring = false
         
         cancellable?.cancel()
         history.removeAll()

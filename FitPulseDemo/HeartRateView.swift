@@ -46,22 +46,27 @@ struct HeartRateView: View {
             .foregroundStyle(.gray)
             
             // Controls
-            HStack(spacing: 40) {
-                Button("Start") {
-                    viewModel.startMonitoring()
+            Button(action: {
+                viewModel.isMonitoring ? viewModel.stopMonitoring() : viewModel.startMonitoring()
+            }) {
+                HStack {
+                    Image(systemName: viewModel.isMonitoring ? "stop.fill" : "play.fill")
+                    Text(viewModel.isMonitoring ? "Stop": "Start")
                 }
-                .buttonStyle(.borderedProminent)
-                
-                Button("Stop") {
-                    viewModel.stopMonitoring()
-                }
-                .buttonStyle(.borderedProminent)
+                .font(.headline)
+                .foregroundStyle(.white)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 12)
+                .background(viewModel.isMonitoring ? .red : .green)
+                .cornerRadius(20)
             }
             
             if let errorMessage = viewModel.errorMessage {
                 Text(errorMessage)
                     .foregroundStyle(.red)
                     .font(.footnote)
+                    .multilineTextAlignment(.center)
+                    .padding(.top)
             }
             
             Spacer()
