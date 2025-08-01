@@ -1,1 +1,51 @@
-FitPulseDemo
+# ❤️ FitPulseDemo
+** FitPulseDemo ** is a lightweight SwiftUI demo that uses the SmartSpectraSwiftSDK to detect and visualize real-time heart rate data from the iPhone camera. It demonstrates camera permission handling, live BPM updates, and heart rate statistics (min/max/avg) with responsive SwiftUI components.
+
+<p align="center">
+    <img src="./docs/Screenshot_CPUProfile.png" alt="CPU Profile" width="600 />
+</p>
+
+---
+
+## Features
+ - Real-time heart rate monitoring using `SmartSpectraSwiftSDK`
+ - SwiftUI interface with animated pulse indicator
+ - Displays live BPM + historical Min, Max, Avg stats
+ - Start/Stop toggle for monitoring
+ - Light/Dark mode support
+ - Unit tested using Swift Testing
+
+ ---
+ 
+ ## Quick Start
+ 
+ Refer to [`QuickStart.md`](./QuickStart.md) for:
+  - Step-by-step setup & import guide
+  - Code snippets to get up and running
+  - Privacy settings for camera access
+  - How to request your `SmartSpectra` API key
+
+  --- 
+  
+  ## Performance Optimization
+  
+  ### Optimization Opportunity
+  
+  Currently, the app processes every frame (~30 FPS), which creates heavy CPU usage on some devices. From profiling (see Instruments screenshot above), most CPU loads stems from continuous frame processing by `MediaPipe`.
+
+**Planned Optimization:** 
+Throttle the processing rate by **skipping frames**, e.g. analyzing only 1 in every 3 frames. This reduces CPU load without significantly affecting BPM accuracy.
+
+**Psuedocode:**
+```swift
+if frameCount % 3 == 0 {
+    processFrame(frame)
+}
+
+frameCount += 1
+```
+
+## Documentation
+[`QuickStart.md`](./QuickStart.md) - Setup steps and troubleshooting
+[`FAQ.md`](./FAQ.md) - Answers to common questions
+
