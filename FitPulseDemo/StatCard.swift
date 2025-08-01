@@ -9,12 +9,13 @@ import SwiftUI
 struct StatCard: View {
     let title: String
     let value: Int
+    let icon: String
     
     var body: some View {
         VStack(spacing: 4) {
-            Text(title)
+            Label(title, systemImage: icon)
                 .font(.caption)
-                .foregroundStyle(.gray)
+                .foregroundStyle(.secondary)
             
             Text("\(value)")
                 .font(.title3)
@@ -22,6 +23,6 @@ struct StatCard: View {
         }
         .frame(width: 60, height: 60)
         .background(.thinMaterial)
-        .cornerRadius(12)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
