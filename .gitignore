@@ -64,4 +64,3 @@ fastlane/test_output
 *.xcuserstate
 *.xcuserdata
 FitPulseDemo.xcodeproj/project.xcworkspace/xcshareddata/
-FitPulseDemo/Info.plist
